@@ -9,7 +9,7 @@
       password: "{{ netapp_password }}"
       https: true
       validate_certs: false
-      use_rest: "never"
+      use_rest: "Always"
   tasks:
   - name: Disable CIFS Local Admin
     na_ontap_cifs_local_user_modify:
