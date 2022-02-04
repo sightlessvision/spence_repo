@@ -1,0 +1,19 @@
+- hosts: localhost
+  gather_facts: false
+  collections:
+    - netapp.ontap
+  vars:
+    na_input: &na_input
+      hostname: "{{ hostname }}"
+      username: "{{ netapp_username }}"
+      password: "{{ netapp_password }}"
+      https: true
+      validate_certs: false
+      use_rest: "Always"
+  tasks:
+  - name: Disable CIFS Local Admin
+    na_ontap_cifs_local_user_modify:
+      name: "{{ cifsusername }}"
+      vserver: "{{ vserver }}"
+      is_account_disabled: yes
+      <<: *na_input
